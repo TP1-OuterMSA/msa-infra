@@ -1,0 +1,19 @@
+# msa-test2 values
+template:
+  nameOverride: "msa-test2"
+  fullnameOverride: "msa-test2"
+  
+  image:
+    repository: 108782075530.dkr.ecr.ap-northeast-2.amazonaws.com/msa-test2
+    tag: "latest"
+  
+  # 서비스별 환경 변수
+  env:
+    SERVICE_NAME: "msa-test2"
+    SPRING_DATASOURCE_URL: jdbc:mysql://paper-data-crawling.cl64kkugmebl.ap-northeast-2.rds.amazonaws.com:3306/paper1?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    SPRING_DATASOURCE_USERNAME: paper
+    SPRING_DATASOURCE_PASSWORD: "paper)paper123"
+    SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "3"
+    SPRING_DATASOURCE_HIKARI_MINIMUM-IDLE: "1" 
+    SPRING_DATASOURCE_HIKARI_CONNECTION-TIMEOUT: "20000"
+    SPRING_DATASOURCE_HIKARI_IDLE-TIMEOUT: "300000"

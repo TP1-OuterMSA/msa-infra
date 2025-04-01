@@ -5,6 +5,7 @@ template:
   
   image:
     repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/msa-test1
+    pullPolicy: Always
     tag: "20250401060845"
   
   # 서비스별 환경 변수

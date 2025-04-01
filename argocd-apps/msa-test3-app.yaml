@@ -6,11 +6,11 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: <https://github.com/TP1-OuterMSA/msa-infra.git\>
+    repoURL: https://github.com/TP1-OuterMSA/msa-infra.git
     targetRevision: HEAD
     path: charts/services/msa-test3
   destination:
-    server: <https://kubernetes.default.svc\>
+    server: https://kubernetes.default.svc
     namespace: msa
   syncPolicy:
     automated:

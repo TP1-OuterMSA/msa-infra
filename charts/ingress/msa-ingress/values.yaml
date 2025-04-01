@@ -4,13 +4,14 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/target-type: instance
     alb.ingress.kubernetes.io/use-regex: "true"
     alb.ingress.kubernetes.io/healthcheck-path: "/actuator/health"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/target-group-attributes: "stickiness.enabled=false,deregistration_delay.timeout_seconds=30"
     alb.ingress.kubernetes.io/load-balancer-attributes: "idle_timeout.timeout_seconds=60,routing.http.drop_invalid_header_fields.enabled=true"
     alb.ingress.kubernetes.io/group.name: "msa-services"
+    alb.ingress.kubernetes.io/success-codes: "200-399"
   paths:
     # 기존 서비스 경로
     - path: /customers/register

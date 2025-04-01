@@ -2,11 +2,11 @@
 template:
   nameOverride: "msa-test2"
   fullnameOverride: "msa-test2"
-
+  
   image:
     repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/msa-test2
     tag: "latest"
-
+  
   # 서비스별 환경 변수
   env:
     SERVICE_NAME: "msa-test2"
@@ -14,6 +14,6 @@ template:
     SPRING_DATASOURCE_USERNAME: paper
     SPRING_DATASOURCE_PASSWORD: "paper)paper123"
     SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: "3"
-    SPRING_DATASOURCE_HIKARI_MINIMUM-IDLE: "1"
+    SPRING_DATASOURCE_HIKARI_MINIMUM-IDLE: "1" 
     SPRING_DATASOURCE_HIKARI_CONNECTION-TIMEOUT: "20000"
     SPRING_DATASOURCE_HIKARI_IDLE-TIMEOUT: "300000"

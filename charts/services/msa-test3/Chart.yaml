@@ -1,0 +1,10 @@
+apiVersion: v2
+name: msa-test3
+description: A Helm chart for MSA Test3 Service
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+dependencies:
+  - name: template
+    version: "*"
+    repository: "file://../../common/template"

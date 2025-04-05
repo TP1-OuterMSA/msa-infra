@@ -14,7 +14,7 @@ template:
   # 서비스별 환경 변수
   env:
     SERVICE_NAME: "team03-be"
-    SPRING_DATASOURCE_URL: jdbc:mysql://msa-service-team03.c3kygsge2own.ap-northeast-2.rds.amazonaws.com:3306/paper1?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    SPRING_DATASOURCE_URL: jdbc:mysql://msa-service-team03-eks.c3kygsge2own.ap-northeast-2.rds.amazonaws.com:3306/paper1?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     SPRING_DATASOURCE_USERNAME: admin
     SPRING_DATASOURCE_PASSWORD: "msa_service"
     SPRING_JPA_HIBERNATE_DDL-AUTO: "update"

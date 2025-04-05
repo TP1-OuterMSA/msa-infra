@@ -9,7 +9,7 @@ template:
   image:
     repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/team03-be-development-repo
     pullPolicy: Always
-    tag: "sha-434f8d9"
+    tag: "sha-a2b5738"
 
   # 서비스별 환경 변수
   env:

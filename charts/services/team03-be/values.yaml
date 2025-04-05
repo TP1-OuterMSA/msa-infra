@@ -3,6 +3,9 @@ template:
   nameOverride: "team03-be"
   fullnameOverride: "team03-be"
 
+  strategy:
+    type: Recreate
+
   image:
     repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/team03-be-development-repo
     pullPolicy: Always

@@ -1,0 +1,22 @@
+# team01-be values
+template:
+  nameOverride: "team01-be"
+  fullnameOverride: "team01-be"
+
+  strategy:
+    type: Recreate
+
+  image:
+    repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/team01-be-development-repo
+    pullPolicy: Always
+    tag: "development"
+
+  # 서비스별 환경 변수
+  env:
+    SERVICE_NAME: "team01-be"
+    SPRING_DATASOURCE_URL: jdbc:mysql://msa-service-team01-eks.c3kygsge2own.ap-northeast-2.rds.amazonaws.com:3306/tp01?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    SPRING_DATASOURCE_USERNAME: admin
+    SPRING_DATASOURCE_PASSWORD: "msa_service"
+    SPRING_JPA_HIBERNATE_DDL-AUTO: "update"
+    SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: "true"
+    SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: "org.hibernate.dialect.MySQL8Dialect"

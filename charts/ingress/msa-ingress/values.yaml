@@ -34,3 +34,7 @@ ingress:
       pathType: Prefix
       serviceName: team03-be
       servicePort: 80
+    - path: /team3/analytics
+      pathType: Prefix
+      serviceName: team03-fe
+      servicePort: 80

@@ -20,3 +20,9 @@ template:
     SPRING_JPA_HIBERNATE_DDL-AUTO: "update"
     SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: "true"
     SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: "org.hibernate.dialect.MySQL8Dialect"
+    # S3 환경 변수 추가
+    S3_CREDENTIALS_ACCESS_KEY: "AKIAYRSBD75MECXNREK3"
+    S3_CREDENTIALS_SECRET_KEY: "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"
+    S3_CREDENTIALS_REGION: "ap-northeast-2"
+    S3_BUCKET: "mju-team-project-community-image"
+

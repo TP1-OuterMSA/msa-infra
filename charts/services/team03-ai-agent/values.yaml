@@ -1,11 +1,8 @@
-# team03-ai-agent values
 template:
   nameOverride: "team03-ai-agent"
   fullnameOverride: "team03-ai-agent"
-
   strategy:
     type: Recreate
-
   image:
     repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/team03-ai-agent-development-repo
     pullPolicy: Always
@@ -14,17 +11,32 @@ template:
   # 서비스별 환경 변수
   env:
     SERVICE_NAME: "team03-ai-agent"
-    DJANGO_SECRET: "django-insecure-$rf0a26!(t6p2anvlt9ar78=q&nvflc=u+do5(5xn752s9l&&+"
-    OPENAI_API: "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"
     DJANGO_SETTINGS_MODULE: "config.settings"
     DJANGO_DEBUG: "False"
     DJANGO_ALLOWED_HOSTS: "*"
+
+  # Secret에서 환경 변수 참조
+  extraEnv:
+    - name: DJANGO_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: team03-ai-agent-secrets
+          key: django-secret
+    - name: OPENAI_API
+      valueFrom:
+        secretKeyRef:
+          name: team03-ai-agent-secrets
+          key: openai-api-key
+
+  # 포트 설정 (8080으로 통일)
+  containerPort: 8080
+  servicePort: 80
 
   # livenessProbe와 readinessProbe 설정
   livenessProbe:
     httpGet:
       path: /actuator/health/
-      port: 8000
+      port: 8080
     initialDelaySeconds: 30
     periodSeconds: 30
     timeoutSeconds: 5
@@ -34,16 +46,12 @@ template:
   readinessProbe:
     httpGet:
       path: /actuator/health/
-      port: 8000
+      port: 8080
     initialDelaySeconds: 15
     periodSeconds: 10
     timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 3
-
-  # 포트 설정
-  containerPort: 8000
-  servicePort: 80
 
   # 리소스 제한
   resources:

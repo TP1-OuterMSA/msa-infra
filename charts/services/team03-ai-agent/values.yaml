@@ -8,28 +8,23 @@ template:
     pullPolicy: Always
     tag: "development"
 
-  # 환경 변수를 정확하게 설정
+  # 기본 환경 변수
   env:
     SERVICE_NAME: "team03-ai-agent"
     DJANGO_SETTINGS_MODULE: "config.settings"
     DJANGO_DEBUG: "False"
     DJANGO_ALLOWED_HOSTS: "*"
-    DJANGO_SECRET:
-      valueFrom:
-        secretKeyRef:
-          name: team03-ai-agent-secrets
-          key: django-secret
-    OPENAI_API:
-      valueFrom:
-        secretKeyRef:
-          name: team03-ai-agent-secrets
-          key: openai-api-key
+
+  # Secret을 환경 변수로 마운트
+  envFrom:
+    - secretRef:
+        name: team03-ai-agent-secrets
 
   # 포트 설정
   containerPort: 8080
   servicePort: 80
 
-  # livenessProbe와 readinessProbe 설정
+  # 프로브 설정
   livenessProbe:
     httpGet:
       path: /actuator/health/

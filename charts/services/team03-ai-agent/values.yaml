@@ -6,29 +6,26 @@ template:
   image:
     repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/team03-ai-agent-development-repo
     pullPolicy: Always
-    tag: "sha-977a2ee"
+    tag: "development"
 
-  # 서비스별 환경 변수
+  # 환경 변수를 정확하게 설정
   env:
     SERVICE_NAME: "team03-ai-agent"
     DJANGO_SETTINGS_MODULE: "config.settings"
     DJANGO_DEBUG: "False"
     DJANGO_ALLOWED_HOSTS: "*"
-
-  # Secret에서 환경 변수 참조
-  extraEnv:
-    - name: DJANGO_SECRET
+    DJANGO_SECRET:
       valueFrom:
         secretKeyRef:
           name: team03-ai-agent-secrets
           key: django-secret
-    - name: OPENAI_API
+    OPENAI_API:
       valueFrom:
         secretKeyRef:
           name: team03-ai-agent-secrets
           key: openai-api-key
 
-  # 포트 설정 (8080으로 통일)
+  # 포트 설정
   containerPort: 8080
   servicePort: 80
 

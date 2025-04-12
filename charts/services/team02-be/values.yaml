@@ -11,18 +11,12 @@ template:
     pullPolicy: Always
     tag: "sha-f8ebee9"
 
-  # 서비스별 환경 변수
   env:
     SERVICE_NAME: "team02-be"
-    SPRING_DATASOURCE_URL: jdbc:mysql://msa-service-team02-eks.c3kygsge2own.ap-northeast-2.rds.amazonaws.com:3306/tp01?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
-    SPRING_DATASOURCE_USERNAME: admin
-    SPRING_DATASOURCE_PASSWORD: "msa_service"
     SPRING_JPA_HIBERNATE_DDL-AUTO: "update"
     SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: "true"
     SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: "org.hibernate.dialect.MySQL8Dialect"
-    # S3 환경 변수 추가
-    S3_CREDENTIALS_ACCESS_KEY: "AKIAYRSBD75MECXNREK3"
-    S3_CREDENTIALS_SECRET_KEY: "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"
-    S3_CREDENTIALS_REGION: "ap-northeast-2"
-    S3_BUCKET: "mju-team-project-community-image"
 
+  envFrom:
+    - secretRef:
+        name: team02-be-secrets

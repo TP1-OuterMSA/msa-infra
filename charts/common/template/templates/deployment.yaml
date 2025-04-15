@@ -17,9 +17,21 @@ spec:
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.vault.enabled }}
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "{{ .Chart.Name }}"
+        vault.hashicorp.com/agent-inject-secret-application.yml: "msa/{{ .Chart.Name }}/{{ .Values.vault.environment }}"
+        vault.hashicorp.com/agent-inject-template-application.yml: |
+          {{`{{- with secret "msa/`}}{{ .Chart.Name }}{{`/`}}{{ .Values.vault.environment }}{{`" -}}
+          {{ .Data.data.application_yml }}
+          {{- end }}`}}
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+      {{- end }}
       labels:
         {{- include "template.selectorLabels" . | nindent 8 }}
     spec:
+      serviceAccountName: {{ .Chart.Name }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -36,10 +48,18 @@ spec:
             - name: http
               containerPort: {{ .Values.service.targetPort }}
               protocol: TCP
+          {{- if not .Values.vault.enabled }}
           env:
             {{- range $key, $value := .Values.env }}
             - name: {{ $key }}
               value: "{{ $value }}"
+            {{- end }}
+          {{- end }}
+          volumeMounts:
+            {{- if .Values.vault.enabled }}
+            - name: config-volume
+              mountPath: /app/application.yml
+              subPath: application.yml
             {{- end }}
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
@@ -59,6 +79,11 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      {{- if .Values.vault.enabled }}
+      volumes:
+        - name: config-volume
+          emptyDir: {}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

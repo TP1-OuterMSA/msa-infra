@@ -14,6 +14,11 @@ serviceAccount:
   create: false
   name: ""
 
+# Vault 설정
+vault:
+  enabled: true
+  environment: "dev"
+
 podAnnotations: {}
 podSecurityContext: {}
 securityContext: {}
@@ -41,7 +46,7 @@ nodeSelector: {}
 tolerations: []
 affinity: {}
 
-# 개별 서비스에서 정의해야 하는 환경 변수
+# Vault 비활성화 시 사용할 환경 변수 (개발 전용)
 env: {}
 
 livenessProbe:

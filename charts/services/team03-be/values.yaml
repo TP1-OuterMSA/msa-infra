@@ -1,18 +1,22 @@
-# team03-be values
+# team03-be values for template subchart
 template:
   nameOverride: "team03-be"
   fullnameOverride: "team03-be"
-
+  
   strategy:
     type: Recreate
-
+  
   image:
     repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/team03-be-development-repo
     pullPolicy: Always
     tag: "sha-6136e5b"
-
+  
+  # 명시적으로 Vault 설정 활성화
   vault:
     enabled: true
     environment: "dev"
-
+  
+  # 서비스 계정 이름을 반드시 설정
+  serviceAccountName: "team03-be"
+  
   env: {}

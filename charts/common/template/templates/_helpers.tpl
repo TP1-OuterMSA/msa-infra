@@ -44,7 +44,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/*
-Selector labels - 이 부분이 중요! app: name 형식으로 설정
+Selector labels
 */}}
 {{- define "template.selectorLabels" -}}
 app: {{ include "template.name" . }}

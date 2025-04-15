@@ -20,10 +20,10 @@ spec:
       {{- if .Values.vault.enabled }}
       annotations:
         vault.hashicorp.com/agent-inject: "true"
-        vault.hashicorp.com/role: "{{ .Chart.Name }}"
-        vault.hashicorp.com/agent-inject-secret-application.yml: "msa/{{ .Chart.Name }}/{{ .Values.vault.environment }}"
+        vault.hashicorp.com/role: "{{ include "template.name" . }}"
+        vault.hashicorp.com/agent-inject-secret-application.yml: "msa/{{ include "template.name" . }}/{{ .Values.vault.environment }}"
         vault.hashicorp.com/agent-inject-template-application.yml: |
-          {{`{{- with secret "msa/`}}{{ .Chart.Name }}{{`/`}}{{ .Values.vault.environment }}{{`" -}}
+          {{`{{- with secret "msa/`}}{{ include "template.name" . }}{{`/`}}{{ .Values.vault.environment }}{{`" -}}
           {{ .Data.data.application_yml }}
           {{- end }}`}}
         vault.hashicorp.com/agent-pre-populate-only: "true"
@@ -31,7 +31,7 @@ spec:
       labels:
         {{- include "template.selectorLabels" . | nindent 8 }}
     spec:
-      serviceAccountName: {{ .Chart.Name }}
+      serviceAccountName: {{ include "template.name" . }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -39,7 +39,7 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: {{ include "template.name" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -55,12 +55,12 @@ spec:
               value: "{{ $value }}"
             {{- end }}
           {{- end }}
+          {{- if .Values.vault.enabled }}
           volumeMounts:
-            {{- if .Values.vault.enabled }}
             - name: config-volume
               mountPath: /app/application.yml
               subPath: application.yml
-            {{- end }}
+          {{- end }}
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             httpGet:

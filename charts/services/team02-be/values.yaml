@@ -11,12 +11,10 @@ template:
     pullPolicy: Always
     tag: "sha-f8ebee9"
 
-  env:
-    SERVICE_NAME: "team02-be"
-    SPRING_JPA_HIBERNATE_DDL-AUTO: "update"
-    SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: "true"
-    SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: "org.hibernate.dialect.MySQL8Dialect"
+  vault:
+    enabled: true
+    environment: "dev"
 
-  envFrom:
-    - secretRef:
-        name: team02-be-secrets
+  serviceAccountName: "team02-be"
+
+  env: {}

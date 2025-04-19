@@ -1,0 +1,53 @@
+# 기본 설정값
+replicaCount: 1
+
+nameOverride: "team03-fe"
+fullnameOverride: "team03-fe"
+
+strategy:
+  type: Recreate
+
+vault:
+  enabled: true
+  environment: "dev"
+
+serviceAccountName: "team03-fe"
+
+env: {}
+
+image:
+  repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/team03-fe-repository
+  tag: "sha-514add4"
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  hosts:
+    - host: team03-fe.your-domain.com
+      paths:
+        - path: /
+          pathType: Prefix
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 80
+  

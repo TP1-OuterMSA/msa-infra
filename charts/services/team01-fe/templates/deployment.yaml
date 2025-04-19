@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "team03-fe.fullname" . }}
+  name: {{ include "team01-fe.fullname" . }}
   labels:
-    {{- include "team03-fe.labels" . | nindent 4 }}
+    {{- include "team01-fe.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "team03-fe.selectorLabels" . | nindent 6 }}
+      {{- include "team01-fe.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "team03-fe.selectorLabels" . | nindent 8 }}
+        {{- include "team01-fe.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}

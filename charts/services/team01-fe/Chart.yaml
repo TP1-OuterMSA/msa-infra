@@ -1,6 +1,6 @@
 apiVersion: v2
-name: team03-fe
-description: Team 03 Frontend Application
+name: team01-fe
+description: Team 01 Frontend Application
 type: application
 version: 0.1.0
 appVersion: "1.0.0"

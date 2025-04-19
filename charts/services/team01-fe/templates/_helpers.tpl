@@ -1,10 +1,10 @@
 {{/* Expand the name of the chart */}}
-{{- define "team03-fe.name" -}}
+{{- define "team01-fe.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/* Create a default fully qualified app name */}}
-{{- define "team03-fe.fullname" -}}
+{{- define "team01-fe.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -18,14 +18,14 @@
 {{- end }}
 
 {{/* Create chart name and version as used by the chart label */}}
-{{- define "team03-fe.chart" -}}
+{{- define "team01-fe.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/* Common labels */}}
-{{- define "team03-fe.labels" -}}
-helm.sh/chart: {{ include "team03-fe.chart" . }}
-{{ include "team03-fe.selectorLabels" . }}
+{{- define "team01-fe.labels" -}}
+helm.sh/chart: {{ include "team01-fe.chart" . }}
+{{ include "team01-fe.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -33,7 +33,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/* Selector labels */}}
-{{- define "team03-fe.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "team03-fe.name" . }}
+{{- define "team01-fe.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "team01-fe.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}

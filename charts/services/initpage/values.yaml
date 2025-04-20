@@ -16,7 +16,7 @@ serviceAccountName: "initpage"
 env: {}
 
 image:
-  repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/initPage
+  repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/initpage
   tag: "sha-514add4"
   pullPolicy: Always
 

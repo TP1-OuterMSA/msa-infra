@@ -1,8 +1,8 @@
 # 기본 설정값
 replicaCount: 1
 
-nameOverride: "initPage"
-fullnameOverride: "initPage"
+nameOverride: "initpage"
+fullnameOverride: "initpage"
 
 strategy:
   type: Recreate
@@ -11,7 +11,7 @@ vault:
   enabled: true
   environment: "dev"
 
-serviceAccountName: "initPage"
+serviceAccountName: "initpage"
 
 env: {}
 

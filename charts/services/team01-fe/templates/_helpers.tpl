@@ -36,4 +36,5 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- define "team01-fe.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "team01-fe.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+app: {{ include "team01-fe.name" . }}
 {{- end }}

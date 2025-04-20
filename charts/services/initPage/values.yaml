@@ -1,0 +1,53 @@
+# 기본 설정값
+replicaCount: 1
+
+nameOverride: "initPage"
+fullnameOverride: "initPage"
+
+strategy:
+  type: Recreate
+
+vault:
+  enabled: true
+  environment: "dev"
+
+serviceAccountName: "initPage"
+
+env: {}
+
+image:
+  repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/initPage
+  tag: "sha-514add4"
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  hosts:
+    - host: http://k8s-msaservices-7d023f0bb9-676035063.ap-northeast-2.elb.amazonaws.com/
+      paths:
+        - path: /
+          pathType: Prefix
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 80
+  

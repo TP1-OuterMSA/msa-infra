@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "initPage.fullname" . }}
+  name: {{ include "initpage.fullname" . }}
   labels:
-    {{- include "initPage.labels" . | nindent 4 }}
+    {{- include "initpage.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "initPage.selectorLabels" . | nindent 6 }}
+      {{- include "initpage.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "initPage.selectorLabels" . | nindent 8 }}
+        {{- include "initpage.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}

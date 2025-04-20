@@ -33,7 +33,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/* Selector labels */}}
-{{- define "initpage-fe.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "initpage-fe.name" . }}
+{{- define "initpage.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "initpage.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}

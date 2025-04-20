@@ -17,7 +17,7 @@ env: {}
 
 image:
   repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/team01-fe-repository
-  tag: "sha-79ec6d9"
+  tag: "sha-dd813d9"
   pullPolicy: Always
 
 nameOverride: ""

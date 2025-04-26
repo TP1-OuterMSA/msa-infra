@@ -60,3 +60,10 @@ readinessProbe:
   path: /actuator/health
   initialDelaySeconds: 30
   periodSeconds: 10
+
+# Prometheus 설정
+prometheus:
+  enabled: true
+  scrape: "true"
+  path: "/actuator/prometheus"
+  port: "8080"

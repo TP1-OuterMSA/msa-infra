@@ -13,12 +13,13 @@ spec:
       {{- include "template.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- if .Values.vault.enabled }}
-      annotations:
+        {{- if .Values.prometheus.enabled }}
+        prometheus.io/scrape: "{{ .Values.prometheus.scrape }}"
+        prometheus.io/path: "{{ .Values.prometheus.path }}"
+        prometheus.io/port: "{{ .Values.prometheus.port }}"
+        {{- end }}
+        {{- if .Values.vault.enabled }}
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/role: "{{ include "template.name" . }}"
         vault.hashicorp.com/agent-inject-secret-application.yml: "msa/{{ include "template.name" . }}/{{ .Values.vault.environment }}"
@@ -27,7 +28,10 @@ spec:
           {{ .Data.data.application_yml }}
           {{- end }}`}}
         vault.hashicorp.com/agent-pre-populate-only: "true"
-      {{- end }}
+        {{- end }}
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
       labels:
         {{- include "template.selectorLabels" . | nindent 8 }}
     spec:

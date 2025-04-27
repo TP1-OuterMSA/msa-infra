@@ -15,6 +15,12 @@ template:
     enabled: true
     environment: "dev"
 
+  prometheus:
+    enabled: true
+    scrape: "true"
+    path: "/actuator/prometheus"
+    port: "8080"
+
   serviceAccountName: "team04-be"
 
   env: {}

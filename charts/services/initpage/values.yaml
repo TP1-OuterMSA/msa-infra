@@ -17,7 +17,7 @@ env: {}
 
 image:
   repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/initpage
-  tag: "sha-eb0d361"
+  tag: "sha-77fb817"
   pullPolicy: Always
 
 nameOverride: ""

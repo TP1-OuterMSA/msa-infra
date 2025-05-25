@@ -43,17 +43,7 @@ template:
 
 # 프로브 설정 (최상위 레벨로 이동)
 readinessProbe:
-  enabled: true
-  path: /actuator/health
-  initialDelaySeconds: 50
-  periodSeconds: 40
-  timeoutSeconds: 40
-  failureThreshold: 3
+  enabled: false
 
 livenessProbe:
-  enabled: true
-  path: /actuator/health
-  initialDelaySeconds: 60
-  periodSeconds: 40
-  timeoutSeconds: 40
-  failureThreshold: 3
+  enabled: false

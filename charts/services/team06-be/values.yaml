@@ -37,3 +37,10 @@ template:
 
   serviceAccountName: "team06-be"
   env: {}
+
+
+readinessProbe:
+  enabled: false
+
+livenessProbe:
+  enabled: false

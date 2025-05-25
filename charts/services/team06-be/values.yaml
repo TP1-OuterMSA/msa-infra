@@ -6,24 +6,6 @@ template:
   strategy:
     type: Recreate
 
-  readinessProbe:
-    httpGet:
-      path: /actuator/health
-      port: 8080
-    initialDelaySeconds: 50
-    periodSeconds: 40
-    timeoutSeconds: 40      # 충분한 여유시간
-    failureThreshold: 3
-
-  livenessProbe:
-    httpGet:
-      path: /actuator/health
-      port: 8080
-    initialDelaySeconds: 60
-    periodSeconds: 40      # 더 긴 간격으로 체크
-    timeoutSeconds: 40      # 충분한 여유시간
-    failureThreshold: 3
-
   image:
     repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/team06-be-development-repo
     pullPolicy: Always
@@ -57,3 +39,21 @@ template:
   serviceAccountName: "team06-be"
 
   env: {}
+
+
+# 프로브 설정 (최상위 레벨로 이동)
+readinessProbe:
+  enabled: true
+  path: /actuator/health
+  initialDelaySeconds: 50
+  periodSeconds: 40
+  timeoutSeconds: 40
+  failureThreshold: 3
+
+livenessProbe:
+  enabled: true
+  path: /actuator/health
+  initialDelaySeconds: 60
+  periodSeconds: 40
+  timeoutSeconds: 40
+  failureThreshold: 3

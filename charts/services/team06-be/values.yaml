@@ -6,6 +6,25 @@ template:
   strategy:
     type: Recreate
 
+  # 프로브 설정 추가
+  readinessProbe:
+    httpGet:
+      path: /actuator/health/readiness
+      port: 8080
+    initialDelaySeconds: 50    # 애플리케이션 시작 시간보다 길게
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 3
+
+  livenessProbe:
+    httpGet:
+      path: /actuator/health/liveness
+      port: 8080
+    initialDelaySeconds: 60    # readiness보다 더 길게
+    periodSeconds: 20
+    timeoutSeconds: 5
+    failureThreshold: 3
+
   image:
     repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/team06-be-development-repo
     pullPolicy: Always

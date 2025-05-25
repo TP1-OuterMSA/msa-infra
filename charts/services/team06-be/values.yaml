@@ -37,20 +37,3 @@ template:
 
   serviceAccountName: "team06-be"
   env: {}
-
-# 프로브 설정 (완전 비활성화)
-readinessProbe:
-  enabled: false
-  path: /actuator/health
-  initialDelaySeconds: 30
-  periodSeconds: 10
-  timeoutSeconds: 30
-  failureThreshold: 3
-
-livenessProbe:
-  enabled: false
-  path: /actuator/health
-  initialDelaySeconds: 60
-  periodSeconds: 30
-  timeoutSeconds: 30
-  failureThreshold: 3

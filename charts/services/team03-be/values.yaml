@@ -9,7 +9,7 @@ template:
   image:
     repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/team03-be-development-repo
     pullPolicy: Always
-    tag: "sha-7d9033b"
+    tag: "sha-0b17239"
   
   # 명시적으로 Vault 설정 활성화
   vault:

@@ -38,3 +38,9 @@ template:
   serviceAccountName: "team06-auth-service"
   
   env: {}
+
+readinessProbe:
+  enabled: false
+
+livenessProbe:
+  enabled: false

@@ -8,7 +8,7 @@ template:
   image:
     repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/team06-auth-service-development-repo
     pullPolicy: Always
-    tag: "sha-1a1caa7"
+    tag: "sha-714a26c"
   
   # 명시적으로 Vault 설정 활성화
   vault:

@@ -38,3 +38,9 @@ template:
   serviceAccountName: "team02-be"
 
   env: {}
+
+readinessProbe:
+  enabled: false
+
+livenessProbe:
+  enabled: false

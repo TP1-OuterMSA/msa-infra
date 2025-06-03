@@ -9,7 +9,7 @@ template:
   image:
     repository: 809691348554.dkr.ecr.ap-northeast-2.amazonaws.com/team02-be-development-repo
     pullPolicy: Always
-    tag: "sha-48f51a4"
+    tag: "sha-8ea0899"
 
   vault:
     enabled: true
